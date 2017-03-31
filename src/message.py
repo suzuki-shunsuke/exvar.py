@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# DESCRIPTION = """
-# Per local repository application configuration management framework.
-# """.strip()
-
 WARN_NONE_VAR = """
 a var the value isn't set is found
 
