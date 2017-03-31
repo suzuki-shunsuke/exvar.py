@@ -16,7 +16,8 @@ variable name: {}
 """.strip()
 
 WARN_DIFF_SRC_DEST = """
-The content of the destination file is different from the source text replaced variable names with variable values.
+The content of the destination file is different from
+the source text replaced variable names with variable values.
 Destination files are generated automatically,
 so if you add some modifications to the destination file directly,
 you should add them to the source file and run `exvar run`
@@ -25,14 +26,16 @@ destination file: {}
 """.strip()
 
 WARN_UNKNOWN_VAR_EXIST = """
-the variable "{}" exists in the .exvar.yml but doesn't exist in the .exvar.base.yml
+the variable "{}" exists in the .exvar.yml
+but doesn't exist in the .exvar.base.yml
 
 destination file: {}
 variable name: {}
 """.strip()
 
 WARN_UNKNOWN_FILE_EXIST = """
-the destination file "{}" exists in the .exvar.yml but doesn't exist in the .exvar.base.yml
+the destination file "{}" exists in the .exvar.yml
+but doesn't exist in the .exvar.base.yml
 """.strip()
 
 BASE_FILE_NOT_FOUND = """

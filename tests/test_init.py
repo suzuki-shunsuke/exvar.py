@@ -6,8 +6,8 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-from src.cnst import BASE_FILE, USER_FILE
-from src.init import init
+from src.cnst import BASE_FILE, USER_FILE  # noqa: E402
+from src.init import init  # noqa: E402
 
 
 def test_init(tmpdir):

@@ -8,10 +8,10 @@ import pytest
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-from src.cnst import BASE_FILE
-from src.error import AppError
-from src.init import init
-from src.lib import find_base, warn, execute
+from src.cnst import BASE_FILE  # noqa: E402
+from src.error import AppError  # noqa: E402
+from src.init import init  # noqa: E402
+from src.lib import find_base, warn  # noqa: E402
 
 
 def test_warn():
@@ -30,7 +30,3 @@ def test_find_base(tmpdir):
     init()
     path, data = find_base(tmpdir)
     assert path == tmpdir
-
-
-def test_execute(tmpdir):
-    pass

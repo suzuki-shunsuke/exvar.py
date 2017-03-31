@@ -8,7 +8,7 @@ import pytest
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-from src.error import AppError
+from src.error import AppError  # noqa: E402
 
 
 def test_AppError():

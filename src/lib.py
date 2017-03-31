@@ -8,8 +8,9 @@ import sys
 import yaml
 
 from .cnst import BASE_FILE, USER_FILE
-from .error import (BaseFileNotFoundError, InvalidBaseCfgError,
-                   InvalidUserCfgError, InvalidVarError)
+from .error import (
+    BaseFileNotFoundError, InvalidBaseCfgError,
+    InvalidUserCfgError, InvalidVarError)
 from .message import (
     WARN_NONE_VAR, WARN_UNUSED_VAR, WARN_DIFF_SRC_DEST,
     WARN_UNKNOWN_FILE_EXIST, WARN_UNKNOWN_VAR_EXIST, INVALID_BASE_CFG,
@@ -43,7 +44,7 @@ def get_str(value) -> str:
 
 
 def execute(is_run=False, is_check=False, is_check_dest=False) -> bool:
-    """ 
+    """
     """
     result = True
     pardir, base_conf = find_base(os.getcwd())

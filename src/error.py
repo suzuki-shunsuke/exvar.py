@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .message import BASE_FILE_NOT_FOUND, INVALID_BASE_CFG, INVALID_USER_CFG, INVALID_VAR
+from .message import (BASE_FILE_NOT_FOUND, INVALID_BASE_CFG, INVALID_USER_CFG,
+                      INVALID_VAR)
 
 
 class AppError(Exception):
