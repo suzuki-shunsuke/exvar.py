@@ -1,0 +1,17 @@
+---
+# .exvar.base.yml - exvar base configuration file
+# This comment is generated automatically.
+# Don't write comments in the yaml comment format in this file, because this file may be edited by exvar and then your comments may be cleared in the future version.
+# If you want to write comments about files or parameters,
+# write them in the their "comment" fields.
+config:
+  default_prefix: .
+  default_suffix:
+files:
+# <destination file path>:
+#   src:
+#   comment:
+#   vars:
+#     <variable name>:
+#       comment:
+#       value: null
