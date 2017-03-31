@@ -1,0 +1,13 @@
+#!/bin/bash -eu
+
+PIP=`dirname $0`/../.direnv/python-3.6.1/bin/pip
+PIP_SYNC=`dirname $0`/../.direnv/python-3.6.1/bin/pip-sync
+ACTIVATE=`dirname $0`/../.direnv/python-3.6.1/bin/activate
+
+pyenv install -s 3.6.1
+pyenv shell 3.6.1
+pip install virtualenv
+direnv allow
+source $ACTIVATE
+$PIP install pip-tools
+$PIP_SYNC requirements.dev.txt requirements.txt
