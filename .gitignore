@@ -1,0 +1,9 @@
+*.pyc
+.DS_Store
+.direnv
+.cache
+__pycache__
+node_modules
+npm-debug.log
+dist
+exvar.egg-info
