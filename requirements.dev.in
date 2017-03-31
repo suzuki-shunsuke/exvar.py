@@ -1,0 +1,6 @@
+ipython
+pip-tools
+flake8
+mypy
+pytest
+twine
