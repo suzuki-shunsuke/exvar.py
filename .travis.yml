@@ -2,4 +2,4 @@ language: python
 python:
 - "3.6"
 install: "pip install -r requirements.txt -r requirements.travis.txt"
-script: flake8 src/*.py tests/*.py && pytest
+script: flake8 setup.py src/*.py tests/*.py && pytest

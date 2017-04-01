@@ -1,9 +1,9 @@
 import json
 import os
-from pkg_resources import resource_string
 from setuptools import setup
 
-data = json.loads(resource_string(__name__, "package.json"))
+with open(os.path.join(os.path.dirname(__file__), "package.json")) as r:
+    data = json.load(r)
 
 with open(os.path.join(os.path.dirname(__file__), "README.rst")) as r:
     LONG_DESCRIPTION = r.read()
@@ -29,8 +29,8 @@ setup(
 
     description=data["description"],
     long_description=LONG_DESCRIPTION,
-    url="https://github.com/suzuki-shunsuke/exvar.py",
-    license="MIT",
+    url=data["repository"],
+    license=data["license"],
     author="Suzuki Shunsuke",
     author_email="suzuki.shunsuke.1989@gmail.com"
 )
