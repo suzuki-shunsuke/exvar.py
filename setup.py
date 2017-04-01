@@ -1,6 +1,5 @@
 import json
 import os
-from pkg_resources import resource_string
 from setuptools import setup
 
 with open(os.path.join(os.path.dirname(__file__), "package.json")) as r:
