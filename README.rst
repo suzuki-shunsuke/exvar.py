@@ -1,7 +1,7 @@
 exvar
 =====
 
-|Build Status|
+|Build Status| |PyPI version|
 
 Local repository specific application configuration management
 framework.
@@ -260,3 +260,5 @@ Author
 
 .. |Build Status| image:: https://travis-ci.org/suzuki-shunsuke/exvar.py.svg?branch=master
    :target: https://travis-ci.org/suzuki-shunsuke/exvar.py
+.. |PyPI version| image:: https://badge.fury.io/py/exvar.svg
+   :target: https://badge.fury.io/py/exvar
