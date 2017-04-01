@@ -24,14 +24,13 @@ def warn(msg) -> None:
 def find_base(cwd: str):
     while True:
         try:
-            with open(os.path.join(cwd, BASE_FILE)) as r:
-                return (cwd, yaml.load(r.read()))
+            base_cfg_path = os.path.join(cwd, BASE_FILE)
+            with open(base_cfg_path) as r:
+                return (cwd, validate_base_text(base_cfg_path, r.read()))
         except FileNotFoundError:
             if cwd == "/":
                 raise BaseFileNotFoundError()
             cwd = os.path.dirname(cwd)
-        except yaml.parser.ParserError as e:
-            raise InvalidBaseCfgError("{}\n{}".format(INVALID_BASE_CFG, e))
 
 
 def get_str(value) -> str:
@@ -47,45 +46,37 @@ def execute(is_run=False, is_check=False, is_check_dest=False) -> bool:
     """
     """
     result = True
-    pardir, base_conf = find_base(os.getcwd())
-    if not isinstance(base_conf, dict):
+    pardir, base_cfg = find_base(os.getcwd())
+    if "config" not in base_cfg:
         raise InvalidBaseCfgError()
-    if "config" not in base_conf:
+    if "default_prefix" not in base_cfg["config"]:
         raise InvalidBaseCfgError()
-    if "default_prefix" not in base_conf["config"]:
+    if "default_suffix" not in base_cfg["config"]:
         raise InvalidBaseCfgError()
-    if "default_suffix" not in base_conf["config"]:
-        raise InvalidBaseCfgError()
-    default_prefix = base_conf["config"].get("default_prefix")
-    default_suffix = base_conf["config"].get("default_suffix")
+    default_prefix = base_cfg["config"].get("default_prefix")
+    default_suffix = base_cfg["config"].get("default_suffix")
     if default_prefix is None:
         default_prefix = ""
     if default_suffix is None:
         default_suffix = ""
     try:
         with open(os.path.join(pardir, USER_FILE)) as r:
-            user_conf = yaml.load(r.read())
+            user_cfg = yaml.load(r.read())
     except FileNotFoundError:
         # user config file is not found
-        user_conf = {"files": {}}
+        user_cfg = {"files": {}}
     except yaml.parser.ParserError as e:
         raise InvalidUserCfgError("{}\n{}".format(INVALID_USER_CFG, e))
-    if not isinstance(user_conf, dict):
+    if not isinstance(user_cfg, dict):
         raise InvalidUserCfgError()
-    if "files" not in user_conf:
+    if "files" not in user_cfg:
         raise InvalidUserCfgError()
-    user_files = user_conf["files"]
+    user_files = user_cfg["files"]
     if user_files is None:
         user_files = {}
     elif not isinstance(user_files, dict):
         raise InvalidUserCfgError()
-    if "files" not in base_conf:
-        raise InvalidBaseCfgError()
-    base_files = base_conf["files"]
-    if base_files is None:
-        base_files = {}
-    elif not isinstance(base_files, dict):
-        raise InvalidBaseCfgError()
+    base_files = validate_base_files(base_cfg["files"])
     for dest, base_file in base_files.items():
         user_file = user_files.get(dest, {})
         if not isinstance(user_file, dict):
@@ -160,3 +151,23 @@ def execute(is_run=False, is_check=False, is_check_dest=False) -> bool:
                 warn(WARN_UNKNOWN_FILE_EXIST.format(dest))
                 result = False
     return result
+
+
+def validate_base_text(path, text):
+    try:
+        base_cfg = yaml.load(text)
+    except yaml.parser.ParserError as e:
+        raise InvalidBaseCfgError("{}\n{}".format(INVALID_BASE_CFG, e))
+    if not isinstance(base_cfg, dict):
+        raise InvalidBaseCfgError()
+    if "files" not in base_cfg:
+        raise InvalidBaseCfgError()
+    return base_cfg
+
+
+def validate_base_files(base_files):
+    if base_files is None:
+        return {}
+    elif not isinstance(base_files, dict):
+        raise InvalidBaseCfgError()
+    return base_files

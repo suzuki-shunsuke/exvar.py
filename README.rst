@@ -231,6 +231,7 @@ Usage
     $ exvar init                  Create .exvar.base.yml and .exvar.yml if they don't exist.
     $ exvar check [--check-dest]  Validate the base file and user file and source files and destination files.
     $ exvar run                   Create or update dest files.
+    $ exvar ls-dest               List destination file paths.
 
 Comparison with similar softwares
 ---------------------------------
