@@ -243,7 +243,7 @@ them.
 Contributing
 ------------
 
-1. Fork (https://github.com/suzuki-shunsuke/exvar/fork)
+1. Fork (https://github.com/suzuki-shunsuke/exvar.py/fork)
 2. Create a feature branch
 3. Commit your changes
 4. Rebase your local changes against the master branch
