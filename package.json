@@ -7,7 +7,7 @@
   "author": "Suzuki Shunsuke <suzuki.shunsuke.1989@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "pytest",
+    "test": "flake8 setup.py src/*.py tests/*.py && pytest",
     "commitmsg": "validate-commit-msg",
     "standard-version": "standard-version"
   },
