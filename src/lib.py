@@ -154,7 +154,7 @@ def execute(is_run=False, is_check=False, is_check_dest=False) -> bool:
     return result
 
 
-def validate_base_text(path, text):
+def validate_base_text(text):
     try:
         base_cfg = yaml.load(text)
     except yaml.parser.ParserError as e:
