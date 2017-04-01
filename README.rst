@@ -232,6 +232,7 @@ Usage
     $ exvar check [--check-dest]  Validate the base file and user file and source files and destination files.
     $ exvar run                   Create or update dest files.
     $ exvar ls-dest               List destination file paths.
+    $ exvar root-path             Print the absolute path of the parent directory of the base file.
 
 Comparison with similar softwares
 ---------------------------------

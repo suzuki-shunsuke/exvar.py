@@ -26,7 +26,7 @@ def find_base(cwd: str):
         try:
             base_cfg_path = os.path.join(cwd, BASE_FILE)
             with open(base_cfg_path) as r:
-                return (cwd, validate_base_text(base_cfg_path, r.read()))
+                return (cwd, r.read())
         except FileNotFoundError:
             if cwd == "/":
                 raise BaseFileNotFoundError()
@@ -46,7 +46,8 @@ def execute(is_run=False, is_check=False, is_check_dest=False) -> bool:
     """
     """
     result = True
-    pardir, base_cfg = find_base(os.getcwd())
+    pardir, base_txt = find_base(os.getcwd())
+    base_cfg = validate_base_text(base_txt)
     if "config" not in base_cfg:
         raise InvalidBaseCfgError()
     if "default_prefix" not in base_cfg["config"]:
@@ -153,7 +154,7 @@ def execute(is_run=False, is_check=False, is_check_dest=False) -> bool:
     return result
 
 
-def validate_base_text(path, text):
+def validate_base_text(text):
     try:
         base_cfg = yaml.load(text)
     except yaml.parser.ParserError as e:
