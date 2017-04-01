@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/suzuki-shunsuke/exvar.py/compare/v1.0.2...v1.1.0) (2017-04-01)
+
+
+### Features
+
+* #9 add "ls-dest" sub command ([18e4dc0](https://github.com/suzuki-shunsuke/exvar.py/commit/18e4dc0))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/suzuki-shunsuke/exvar.py/compare/v1.0.1...v1.0.2) (2017-04-01)
 
