@@ -9,6 +9,7 @@ import click
 from .check import check
 from .init import init
 from .ls_dest import ls_dest
+from .root_path import root_path
 from .run import run
 
 if __name__ == "__main__":
@@ -30,12 +31,13 @@ def cmd(ctx, version):
             click.echo(ctx.get_help())
 
 
-init = cmd.command()(init)
-check = click.option(
+cmd.command()(init)
+click.option(
     "--check-dest", is_flag=True, help="check the dest file")(check)
-check = cmd.command()(check)
-run = cmd.command()(run)
-ls_dest = cmd.command("ls-dest")(ls_dest)
+cmd.command()(check)
+cmd.command()(run)
+cmd.command("ls-dest")(ls_dest)
+cmd.command("root-path")(root_path)
 
 
 def main():
