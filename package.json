@@ -2,7 +2,7 @@
   "name": "exvar.py",
   "description": "Local repository specific application configuration management framework.",
   "main": "index.js",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "repository": "https://github.com/suzuki-shunsuke/exvar.py",
   "author": "Suzuki Shunsuke <suzuki.shunsuke.1989@gmail.com>",
   "license": "MIT",

@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/suzuki-shunsuke/exvar.py/compare/v1.1.0...v1.2.0) (2017-04-01)
+
+
+### Bug Fixes
+
+* remove a extra parameter from validate_base_text ([6b234df](https://github.com/suzuki-shunsuke/exvar.py/commit/6b234df))
+
+
+### Features
+
+* #6 add "root-path" subcommand ([8f474f9](https://github.com/suzuki-shunsuke/exvar.py/commit/8f474f9))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/suzuki-shunsuke/exvar.py/compare/v1.0.2...v1.1.0) (2017-04-01)
 
