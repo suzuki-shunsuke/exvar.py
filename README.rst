@@ -18,16 +18,22 @@ trouble when the port number is used by another process.
 
 One of the approaches to deal with this problem are to use environment
 variables. There are some useful tools to manage the environment
-variables (such as `direnv <https://github.com/direnv/direnv>`__). But
-unfortunately many configuration files can't refer the environment
-variables. In addition, it may be trivial, but many such tools doesn't
-provide the template file manages the environment specific
-configurations and their default values.
+variables (such as `direnv <https://github.com/direnv/direnv>`__).
 
-exvar deals with above problems.
+But unfortunately some configuration files can't refer the environment
+variables. In addition, many such tools doesn't provide the template
+file manages the environment specific configurations and their default
+values and description about them.
+
+Especially for developers who have joined your project newly, it is
+important to know the list of the environment specific configurations
+and their default values and descriptions about them.
+
+By exvar you can manage them as code.
 
 Note that we refer to the environment variable management tools in the
-above, but exvar doesn't conflict with them at all.
+above, but exvar doesn't conflict with them at all. Rather exvar can
+complement them.
 
 Why do we call exvar a "framework"?
 -----------------------------------
@@ -123,68 +129,68 @@ destination file
 This file shouldn't be managed by vcs. This is generated automatically
 by ``exvar run`` command, so you shouldn't edit this directly.
 
-Use case 1. docker-compose.yml
-------------------------------
+Use case 1. Vagrantfile and ssh config file
+-------------------------------------------
 
 We describe how to use exvar using a concrete use case.
 
-In The following "docker-compose.yml" the host's port number is
-hardcoded. In some case this is inconvenient.
+Assume that you use vagrant and vagrant's private network and manage ssh
+config as follow.
 
-.. code:: yaml
+.. code:: ruby
 
-    # docker-compose.yml
-    services:
-      db:
-        image: mysql
-        ports: "3306:3306"
-
-By exvar, make the source file ".tmpl.docker-compose.yml" and replace
-the host's port number to the variable.
+    # Vagrantfile
+    Vagrant.configure("2") do |config|
+      config.vm.network "private_network", ip: "192.168.50.4"
+    end
 
 ::
 
-    $ mv docker-compose.yml .tmpl.docker-compose.yml
-    $ vi .tmpl.docker-compose.yml
+    # ssh_config
+    Host vm
+      Hostname 192.168.50.4
+      User vagrant
 
-.. code:: yaml
-
-    # .tmpl.docker-compose.yml (source)
-    services:
-      db:
-        image: mysql
-        ports: "$port:3306"
-
-And create the base file and user file and edit the base file to set the
-default value of the variable "$port".
+Then let's manage the private ip address by exvar.
 
 ::
 
+    $ mv ssh_config .tmpl.ssh_config
+    $ mv Vagrantfile .tmpl.Vagrantfile
     $ exvar init
+    $ vi .tmpl.ssh_config
+    $ vi .tmpl.Vagrantfile
     $ vi .exvar.base.yml
 
-.. code:: yaml
+.. code:: ruby
+
+    # .tmpl.Vagrantfile
+    Vagrant.configure("2") do |config|
+      config.vm.network "private_network", ip: "$[vm ip]"
+    end
+
+::
+
+    # .tmpl.ssh_config
+    Host vm
+      Hostname $[vm ip]
+      User vagrant
+
+::
 
     # .exvar.base.yml
     config:
       default_prefix: .tmpl.
       default_suffix:
     files:
-      docker-compose.yml:
+      ssh_config:
         vars:
-          $port:
-            value: 3306  # default value
-
-If you want to set the port number to "4306" in your local repository,
-set the value in the .exvar.yml .
-
-.. code:: yaml
-
-    # .exvar.yml
-    files:
-      docker-compose.yml:
-        $port:
-          value: 4306
+          $[vm ip]:
+            value: 192.168.50.4
+      Vagrantfile:
+        vars:
+          $[vm ip]:
+            value: 192.168.50.4
 
 You can validate the base file and user file and source file by
 ``exvar check`` command.
@@ -193,20 +199,42 @@ You can validate the base file and user file and source file by
 
     $ exvar check
 
-Finally, you can create the destination file (in this case
-"docker-compose.yml") by ``exvar run`` command.
+Finally, you can create the destination file (in this case "Vagrantfile"
+and "ssh\_config") by ``exvar run`` command.
 
 ::
 
     $ exvar run
 
-You should add destination files (in this case "docker-compose.yml") and
-user file to .gitignore.
+In the above the default private ip address is "192.168.50.4". If you
+want to change the private ip address in your local repository, set the
+value in the .exvar.yml and run ``exvar run`` again.
+
+.. code:: yaml
+
+    # .exvar.yml
+    files:
+      ssh_config:
+        vars:
+          $[vm ip]:
+            value: 192.168.30.1
+      Vagrantfile:
+        vars:
+          $[vm ip]:
+            value: 192.168.30.1
+
+::
+
+    $ exvar check
+    $ exvar run
+
+You should add destination files and user file to .gitignore.
 
 ::
 
     # .gitignore
-    docker-compose.yml
+    Vagrantfile
+    ssh_config
     .exvar.yml
 
 Requirements
