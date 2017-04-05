@@ -93,7 +93,8 @@ def execute(is_run=False, is_check=False, is_check_dest=False) -> bool:
             warn("can't read {}".format(src_path))
             result = False
             continue
-        for var_name, base_var in base_file.get("vars", {}).items():
+        base_vars = base_file.get("vars", {})
+        for var_name, base_var in base_vars.items():
             if var_name in user_file:
                 user_var = user_file[var_name]
                 if "value" in user_var:
@@ -141,7 +142,7 @@ def execute(is_run=False, is_check=False, is_check_dest=False) -> bool:
                     w.write(src_text)
         if is_check:
             for var_name, user_var in user_file.items():
-                if var_name not in base_files:
+                if var_name not in base_vars:
                     warn(WARN_UNKNOWN_VAR_EXIST.format(
                         var_name, dest, var_name))
                     result = False
