@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/suzuki-shunsuke/exvar.py/compare/v1.2.2...v1.2.3) (2017-04-05)
+
+
+### Bug Fixes
+
+* fix a bug of check command ([1791b6f](https://github.com/suzuki-shunsuke/exvar.py/commit/1791b6f))
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/suzuki-shunsuke/exvar.py/compare/v1.2.1...v1.2.2) (2017-04-02)
 
