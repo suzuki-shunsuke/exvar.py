@@ -4,39 +4,79 @@
 #
 #    pip-compile --output-file requirements.dev.txt requirements.dev.in
 #
-args==0.1.0               # via clint
-certifi==2020.4.5.1       # via requests
-chardet==3.0.4            # via requests
-click==6.7                # via pip-tools
-clint==0.5.1              # via twine
-decorator==4.0.11         # via ipython, traitlets
-first==2.0.1              # via pip-tools
-flake8==3.3.0             # via -r requirements.dev.in
-idna==2.7                 # via requests
-ipython-genutils==0.2.0   # via traitlets
-ipython==5.3.0            # via -r requirements.dev.in
-mccabe==0.6.1             # via flake8
-mypy==0.501               # via -r requirements.dev.in
-pexpect==4.2.1            # via ipython
-pickleshare==0.7.4        # via ipython
-pip-tools==1.8.2          # via -r requirements.dev.in
-pkginfo==1.4.1            # via twine
-prompt-toolkit==1.0.14    # via ipython
-ptyprocess==0.5.1         # via pexpect
-py==1.4.33                # via pytest
-pycodestyle==2.3.1        # via flake8
-pyflakes==1.5.0           # via flake8
-pygments==2.2.0           # via ipython
-pytest==3.0.7             # via -r requirements.dev.in
-requests-toolbelt==0.7.1  # via twine
-requests==2.20.0          # via requests-toolbelt, twine
-simplegeneric==0.8.1      # via ipython
-six==1.10.0               # via pip-tools, prompt-toolkit, traitlets
-traitlets==4.3.2          # via ipython
-twine==1.8.1              # via -r requirements.dev.in
-typed-ast==1.0.2          # via mypy
-urllib3==1.24.3           # via requests
-wcwidth==0.1.7            # via prompt-toolkit
+args==0.1.0
+    # via clint
+certifi==2020.4.5.1
+    # via requests
+chardet==3.0.4
+    # via requests
+click==6.7
+    # via pip-tools
+clint==0.5.1
+    # via twine
+decorator==4.0.11
+    # via
+    #   ipython
+    #   traitlets
+first==2.0.1
+    # via pip-tools
+flake8==3.3.0
+    # via -r requirements.dev.in
+idna==2.7
+    # via requests
+ipython-genutils==0.2.0
+    # via traitlets
+ipython==5.3.0
+    # via -r requirements.dev.in
+mccabe==0.6.1
+    # via flake8
+mypy==0.501
+    # via -r requirements.dev.in
+pexpect==4.2.1
+    # via ipython
+pickleshare==0.7.4
+    # via ipython
+pip-tools==1.8.2
+    # via -r requirements.dev.in
+pkginfo==1.4.1
+    # via twine
+prompt-toolkit==1.0.14
+    # via ipython
+ptyprocess==0.5.1
+    # via pexpect
+py==1.10.0
+    # via pytest
+pycodestyle==2.3.1
+    # via flake8
+pyflakes==1.5.0
+    # via flake8
+pygments==2.2.0
+    # via ipython
+pytest==3.0.7
+    # via -r requirements.dev.in
+requests-toolbelt==0.7.1
+    # via twine
+requests==2.20.0
+    # via
+    #   requests-toolbelt
+    #   twine
+simplegeneric==0.8.1
+    # via ipython
+six==1.10.0
+    # via
+    #   pip-tools
+    #   prompt-toolkit
+    #   traitlets
+traitlets==4.3.2
+    # via ipython
+twine==1.8.1
+    # via -r requirements.dev.in
+typed-ast==1.0.2
+    # via mypy
+urllib3==1.24.3
+    # via requests
+wcwidth==0.1.7
+    # via prompt-toolkit
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
